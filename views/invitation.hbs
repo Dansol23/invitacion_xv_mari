@@ -1,0 +1,222 @@
+<!-- Sección 1: Hero -->
+<section class="section hero visible">
+    <div class="section-content">
+        <h1>XV Años</h1>
+        <h2>{{name}}</h2>
+        <p>Te invitamos a celebrar este momento especial</p>
+        <p>{{date}}</p> 
+    </div>
+</section>
+
+<!-- Sección 2: Presentación -->
+<section class="section">
+    <div class="section-content">
+        <h2>Una Celebración Especial</h2>
+        <p>Después de 15 años llenos de amor, risas y sueños, ha llegado
+            el momento de celebrar una fecha muy importante. Te
+            invitamos a acompañarnos en esta noche mágica donde {{name}}
+            dará su primer paso hacia la juventud.</p>
+        <p>Será una velada llena de música, baile, alegría y momentos
+            inolvidables que quedarán para siempre en nuestros
+            corazones.</p>
+    </div>
+</section>
+
+<!-- Sección 3: Carrusel de Fotos -->
+<section class="section">
+    <div class="section-content">
+        <h2>Momentos Especiales</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">Foto 1</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">Foto 2</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">Foto 3</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">Foto 4</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem;">Foto 5</div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+            </div>
+            <div class="carousel-indicators" id="indicators"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 4: Detalles del Evento -->
+<section class="section">
+    <div class="section-content">
+        <h2>Detalles del Evento</h2>
+        <div class="timeline-item">
+            <div class="timeline-icon"><i class="fa-solid fa-calendar"></i></div>
+            <div class="timeline-content">
+                <h3>Fecha</h3>
+                <p>Sábado, {{date}}</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="timeline-content">
+                <h3>Hora</h3>
+                <p>{{time}}</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="timeline-content">
+                <h3>Lugar</h3>
+                <p>{{venue}}<br>{{address}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 5: Código de Vestimenta -->
+<section class="section">
+    <div class="section-content">
+        <h2>Código de Vestimenta</h2>
+        <p>Para esta ocasión especial, el código de vestimenta es <strong>Elegante</strong></p>
+        <div style="display: flex; justify-content: space-around; margin-top: 2rem; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="font-size: 3rem;"><img src="/img/icons-vestido.png" alt=""></div>
+                <p>Por favor, les pedimos evitar el uso del color rojo, ya que está reservado especialmente para la homenajeada.</p>
+            </div>
+        </div>
+        <p style="margin-top: 2rem; font-style: italic;">Colores sugeridos: Rosa, dorado, blanco y negro</p>
+    </div>
+</section>
+
+<!-- Sección 6: Ubicación -->
+<section class="section">
+    <div class="section-content">
+        <h2>¿Cómo Llegar?</h2>
+        <div class="map-container">
+            <div class="map-containers">
+                <iframe
+                    src="https://www.google.com/maps?q=2.480949997102949,-76.68939651833449&output=embed"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+        <p>El salón está ubicado en la vía principal que conduce a la vereda Cajete</p>
+    </div>
+</section>
+
+<!-- Sección 7: Programa del Evento -->
+<section class="section">
+    <div class="section-content">
+        <h2>Programa de la Noche</h2>
+        <div class="timeline-item">
+            <div class="timeline-icon"><i class="fa-solid fa-street-view"></i></div>
+            <div class="timeline-content">
+                <h3>7:00 PM - Recepción</h3>
+                <p>Bienvenida y fotografías</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+            <div class="timeline-content">
+                <h3>8:00 PM - Ceremonia</h3>
+                <p>Vals tradicional</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-icon"><i class="fa-solid fa-utensils"></i></div>
+            <div class="timeline-content">
+                <h3>9:00 PM - Cena</h3>
+                <p>Banquete</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-icon"><i class="fa-solid fa-music"></i></div>
+            <div class="timeline-content">
+                <h3>10:30 PM - Fiesta</h3>
+                <p>Música, baile y diversión</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 8: Regalos -->
+<section class="section">
+    <div class="section-content">
+        <h2>Regalos</h2>
+        <p><strong>Lluvia de sobres:</strong></p>
+        <p style="margin-top: 1rem; font-style: italic;">¡Lo más importante es que compartas este momento especial con nosotros!</p>
+    </div>
+</section>
+
+<!-- Sección 9: Confirmación -->
+<section class="section">
+    <div class="section-content">
+        <h2>Confirma tu Asistencia</h2>
+        <p>Por favor, confirma tu asistencia antes del {{confirmationDate}} para poder preparar todo con el cariño que mereces.</p>
+
+        <form class="form-container" id="confirmationForm">
+            <div class="form-group">
+                <label for="name">Nombre Completo *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="guests">Número de Acompañantes</label>
+                <select id="guests" name="guests">
+                    <option value="0">Solo yo</option>
+                    <option value="1">1 acompañante</option>
+                    <option value="2">2 acompañantes</option>
+                    <option value="3">3 acompañantes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="song">Canción que no puede faltar</label>
+                <input type="text" id="song" name="song" placeholder="¿Qué canción te gustaría escuchar?">
+            </div>
+
+            <button type="submit" class="btn">Confirmar Asistencia</button>
+
+            <div class="confirmation-message" id="confirmationMessage">
+                ¡Gracias por confirmar tu asistencia! Nos vemos en la celebración. 💕
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Sección 10: Agradecimientos -->
+<section class="section">
+    <div class="section-content">
+        <h2>¡Gracias!</h2>
+        <p>Gracias por ser parte de esta historia tan especial. Tu amistad y cariño han sido fundamentales en estos 15 años de vida de {{name}}.</p>
+        <p>Esperamos verte en esta noche mágica para crear juntos recuerdos que durarán para toda la vida.</p>
+
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fa-solid fa-phone"></i></a>
+            <a href="#" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+            <a href="#" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <p style="margin-top: 2rem; font-style: italic;">Con amor,<br>{{name}}</p>
+    </div>
+</section>
