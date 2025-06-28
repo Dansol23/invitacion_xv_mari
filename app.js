@@ -57,10 +57,10 @@ app.get("/", (req, res) => {
     title: "XV Años de Mariana",
     name: "Mariana Hurtado Solarte",
     date: "12 de Julio, 2025",
-    time: "7:00 PM - 3:00 AM",
+    time: "8:00 PM - 5:00 AM",
     venue: "Salón de Eventos",
     address: "Vía principal que conduce a la vereda Cajete",
-    confirmationDate: "22 de Junio",
+    confirmationDate: "8 de Julio",
   });
 });
 
@@ -120,7 +120,7 @@ app.post("/confirm", async (req, res) => {
                         <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
                             <h3 style="color: #a91033; margin-bottom: 10px;">Detalles del evento:</h3>
                             <p style="margin: 5px 0;"><strong>Fecha:</strong> Sábado, 12 de Julio de 2025</p>
-                            <p style="margin: 5px 0;"><strong>Hora:</strong> 7:00 PM - 3:00 AM</p>
+                            <p style="margin: 5px 0;"><strong>Hora:</strong> 8:00 PM - 4:00 AM</p>
                             <p style="margin: 5px 0;"><strong>Lugar:</strong> Vía principal que conduce a la vereda Cajete</p>
                         </div>
                         <p style="color: #666; font-style: italic;">
@@ -161,7 +161,7 @@ app.post("/confirm", async (req, res) => {
 });
 
 // Ruta para ver todos los invitados (panel de administración)
-app.get("/admin/guests", async (req, res) => {
+app.get("/admin/invitados", async (req, res) => {
   try {
     const guests = await Guest.find().sort({ confirmationDate: -1 });
     const totalGuests = guests.length;
@@ -221,7 +221,7 @@ app.get("/api/stats", async (req, res) => {
 });
 
 // Ruta para eliminar un invitado
-app.delete("/admin/guests/:id", async (req, res) => {
+app.delete("/admin/invitados/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deletedGuest = await Guest.findByIdAndDelete(id);
