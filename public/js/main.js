@@ -19,7 +19,7 @@ checkScroll();
 
 // Variables globales
 let currentSlide = 0;
-const totalSlides = 5;
+const totalSlides = 3;
 
 // Función para crear corazones flotantes
 function createFloatingHearts() {
