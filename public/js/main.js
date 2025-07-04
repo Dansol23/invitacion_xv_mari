@@ -24,7 +24,8 @@ const totalSlides = 3;
 // Función para crear corazones flotantes
 function createFloatingHearts() {
   const heartsContainer = document.getElementById("hearts");
-  if (!heartsContainer) return;
+  const flowersContainer = document.getElementById("hearts");
+  if (!heartsContainer && !flowersContainer) return;
 
   const heart = document.createElement("div");
   heart.classList.add("heart");
