@@ -12,13 +12,14 @@
 
         body {
              font-family: "Edu NSW ACT Hand Pre", cursive;
+             max-width: 100vw;
             overflow-x: hidden;
             /* background: linear-gradient(45deg, #ffb3d9, #ff80bf, #ffa6cc, #ffccdd, #ffe6f2); */
-            background-image: url(/img/descarga.png);
+            background-image: url(/img/fondo.png);
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            /* animation: gradientAnimation 100s ease infinite; */
+            animation: gradientAnimation 100s ease infinite;
         }
 
         @keyframes gradientAnimation {
@@ -46,8 +47,7 @@
 
         .section-content {
             text-align: center;
-            max-width: 90%;
-            width: 100%;
+            width: 90%;
             max-width: 600px;
             /* background: rgba(255, 255, 255, 0.95); */
             padding: 2rem 1.5rem;
