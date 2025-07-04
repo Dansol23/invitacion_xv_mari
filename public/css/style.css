@@ -18,7 +18,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            animation: gradientAnimation 100s ease infinite;
+            /* animation: gradientAnimation 100s ease infinite; */
         }
 
         @keyframes gradientAnimation {
