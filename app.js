@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
     title: "XV Años de Mariana",
     name: "Mariana Hurtado Solarte",
     date: "12 de Julio, 2025",
-    time: "8:00 PM - 5:00 AM",
+    time: "6:00 PM - 7:00 AM",
     venue: "Salón de Eventos",
     address: "Vía principal que conduce a la vereda Cajete",
     confirmationDate: "8 de Julio",
