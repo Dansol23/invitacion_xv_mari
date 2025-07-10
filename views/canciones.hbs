@@ -1,0 +1,33 @@
+<style>
+    .container{
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 10px;
+    }
+
+    @media (max-width: 768px) {
+        .title-songs{
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: )
+</style>
+<div class="container">
+    <h1 class="title-songs">Listado de canciones</h1>
+
+    {{#if canciones.length}}
+    <div>
+        {{#each canciones}}
+        <li>{{this.songRequest}}</li>
+        {{/each}}
+    </div>
+    {{else}}
+    <div>
+        <h3>no hay canciones solicitadas</h3>
+    </div>
+    {{/if}}
+</div>

@@ -160,6 +160,32 @@ app.post("/confirm", async (req, res) => {
   }
 });
 
+app.get("/admin/canciones", async (req, res) => {
+  try {
+    // Buscar solo los documentos donde songRequest no sea null ni una cadena vacía
+    const canciones = await Guest.find(
+      { songRequest: { $ne: null, $ne: "" } },
+      "songRequest"
+    );
+
+    const totalSongs = canciones.length;
+
+    res.render("canciones", {
+      title: "Listado de canciones",
+      canciones,
+      songs: {
+        totalSongs,
+      },
+    });
+  } catch (error) {
+    console.error("Error al obtener canciones:", error);
+    res.status(500).render("error", {
+      title: "Error",
+      message: "Error al cargar las canciones",
+    });
+  }
+});
+
 // Ruta para ver todos los invitados (panel de administración)
 app.get("/admin/invitados", async (req, res) => {
   try {

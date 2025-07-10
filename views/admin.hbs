@@ -131,43 +131,64 @@
     .name{
         color: white;
     }
+
+    .btn-canciones{
+        padding: 10px 15px;
+        border-radius: 10px;
+        border: 0;
+    }
+
+    .btn-canciones > a {
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 600;
+        color: #a91033;
+        width: 100%;
+        height: 100%;
+    }
+    .container-btn{
+        display: flex;
+        justify-content: end;
+    }
 </style>
 
 <div class="admin-container">
     <a href="/" class="back-btn">← Volver a la invitación</a>
-    
+
     <div class="admin-header">
         <h1 class="pnel">Panel de Administración</h1>
         <p class="name">XV Años de Mariana Hurtado Solarte</p>
+
+        <div class="container-btn"><button class="btn-canciones"><a href="/admin/canciones">Listado de canciones</a></button></div>
     </div>
-    
+
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-number">{{stats.totalGuests}}</div>
             <div class="stat-label">Invitados Confirmados</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{stats.totalPeople}}</div>
             <div class="stat-label">Total de Personas</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{stats.totalSongRequests}}</div>
             <div class="stat-label">Canciones Solicitadas</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{stats.averageGuestsPerInvitation}}</div>
             <div class="stat-label">Promedio por Invitación</div>
         </div>
     </div>
-    
+
     <div class="guests-table">
         <div class="table-header">
             <h2>Lista de Invitados</h2>
         </div>
-        
+
         {{#if guests.length}}
         <div class="table-content">
             <table>
@@ -188,19 +209,21 @@
                     <tr>
                         <td><strong>{{this.name}}</strong></td>
                         <td>{{this.email}}</td>
-                        <td>{{#if this.phone}}{{this.phone}}{{else}}-{{/if}}</td>
+                        <td>{{#if
+                            this.phone}}{{this.phone}}{{else}}-{{/if}}</td>
                         <td>{{this.numberOfGuests}}</td>
                         <td><strong>{{this.totalPeople}}</strong></td>
                         <td class="song-request">
                             {{#if this.songRequest}}
-                                "{{this.songRequest}}"
+                            "{{this.songRequest}}"
                             {{else}}
-                                -
+                            -
                             {{/if}}
                         </td>
                         <td>{{this.confirmationDate}}</td>
                         <td>
-                            <button class="delete-btn" onclick="deleteGuest('{{this._id}}', '{{this.name}}')">
+                            <button class="delete-btn"
+                                onclick="deleteGuest('{{this._id}}', '{{this.name}}')">
                                 Eliminar
                             </button>
                         </td>
