@@ -1,0 +1,378 @@
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #a91033, #e60f0f);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #a91033;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section2 {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        
+        .section2 h2 {
+            color: #a91033;
+            border-bottom: 2px solid #a91033;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin: 15px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: #a91033;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #8a0d2a;
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .email-preview {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #a91033;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #a91033;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a91033;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Prueba de Recordatorios - XV Años de Mariana</h1>
+        
+        <!-- Sección de Estadísticas -->
+        <div class="section2">
+            <h2>📊 Estadísticas Actuales</h2>
+            <div class="stats" id="statsContainer">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalGuests">-</div>
+                    <div class="stat-label">Total Invitados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="confirmedGuests">-</div>
+                    <div class="stat-label">Confirmados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="validEmails">-</div>
+                    <div class="stat-label">Emails Válidos</div>
+                </div>
+            </div>
+            <button onclick="loadStats()" id="loadStatsBtn">🔄 Actualizar Estadísticas</button>
+        </div>
+        
+        <!-- Sección de Envío Manual -->
+        <div class="section2">
+            <h2>📧 Envío Manual de Recordatorios</h2>
+            <div class="alert alert-warning">
+                <strong>⚠️ ATENCIÓN:</strong> Esta función enviará recordatorios a TODOS los invitados confirmados. 
+                Úsala solo para pruebas o en caso de emergencia.
+            </div>
+            
+            <form id="reminderForm">
+                <div class="form-group">
+                    <label for="secretKey">Clave Secreta:</label>
+                    <input type="password" id="secretKey" name="secretKey" required>
+                </div>
+                <button type="submit" id="sendBtn">🚀 Enviar Recordatorios Manual</button>
+            </form>
+            
+            <div class="loading" id="loadingDiv">
+                <div class="spinner"></div>
+                <p>Enviando recordatorios... Por favor espera.</p>
+            </div>
+            
+            <div id="resultDiv"></div>
+        </div>
+        
+        <!-- Sección de Prueba de Email -->
+        <div class="section2">
+            <h2>📮 Prueba de Email Individual</h2>
+            <p>Envía un recordatorio de prueba a un email específico para ver cómo se ve.</p>
+            
+            <form id="testEmailForm">
+                <div class="form-group">
+                    <label for="testEmail">Email de Prueba:</label>
+                    <input type="email" id="testEmail" name="testEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="testSecretKey">Clave Secreta:</label>
+                    <input type="password" id="testSecretKey" name="testSecretKey" required>
+                </div>
+                <button type="submit" id="testEmailBtn">📧 Enviar Email de Prueba</button>
+            </form>
+            
+            <div id="testEmailResult"></div>
+        </div>
+        
+        <!-- Sección de Vista Previa -->
+        <div class="section2">
+            <h2>👀 Vista Previa del Email</h2>
+            <p>Así se verá el email que reciban los invitados:</p>
+            <div class="email-preview" id="emailPreview">
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #a91033, rgb(230, 15, 15));">
+                    <div style="background: white; padding: 30px; border-radius: 15px; text-align: center;">
+                        <h1 style="color: #a91033; margin-bottom: 20px;">🎉 ¡HOY es el gran día!</h1>
+                        <p style="font-size: 18px; color: #333; margin-bottom: 20px;">¡Hola [Nombre del Invitado]!</p>
+                        <p style="color: #666; line-height: 1.6; font-size: 16px;">
+                            Te recordamos que <strong>HOY</strong> es la celebración de los XV años de Mariana.
+                            ¡Estamos muy emocionados de tenerte con nosotros!
+                        </p>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #a91033;">
+                            <h3 style="color: #a91033; margin-bottom: 15px;">📅 Detalles del evento - HOY:</h3>
+                            <p style="margin: 8px 0; font-size: 16px;"><strong>🕰️ Hora:</strong> 6:00 PM - 5:00 AM</p>
+                            <p style="margin: 8px 0; font-size: 16px;"><strong>📍 Lugar:</strong> Vía principal que conduce a la vereda Cajete</p>
+                            <p style="margin: 8px 0; font-size: 16px;"><strong>👥 Personas confirmadas:</strong> [Número]</p>
+                        </div>
+                        
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px solid #ffeaa7;">
+                            <p style="color: #856404; margin: 0; font-weight: bold;">
+                                🚗 Recuerda llegar con tiempo y traer tu mejor sonrisa
+                            </p>
+                        </div>
+                        
+                        <div style="background: #e8f4f8; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                            <p style="color: #0c5460; margin: 0;">
+                                🎵 <strong>Tu canción solicitada:</strong> "[Canción si la hay]"
+                            </p>
+                        </div>
+                        
+                        <p style="color: #666; font-style: italic; margin-top: 25px;">
+                            ¡Nos vemos en unas horas para crear recuerdos inolvidables juntos!
+                        </p>
+                        
+                        <p style="color: #a91033; font-weight: bold; margin-top: 30px; font-size: 18px;">
+                            Con mucho amor,<br>
+                            💕 Mariana Hurtado Solarte
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar estadísticas
+        async function loadStats() {
+            const btn = document.getElementById('loadStatsBtn');
+            btn.disabled = true;
+            btn.textContent = '🔄 Cargando...';
+            
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                document.getElementById('totalGuests').textContent = stats.totalGuests;
+                document.getElementById('confirmedGuests').textContent = stats.totalGuests; // Asumiendo que todos son confirmados
+                document.getElementById('validEmails').textContent = stats.totalGuests; // Simplificado
+                
+            } catch (error) {
+                console.error('Error cargando estadísticas:', error);
+            }
+            
+            btn.disabled = false;
+            btn.textContent = '🔄 Actualizar Estadísticas';
+        }
+        
+        // Envío manual de recordatorios
+        document.getElementById('reminderForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const secretKey = document.getElementById('secretKey').value;
+            const sendBtn = document.getElementById('sendBtn');
+            const loadingDiv = document.getElementById('loadingDiv');
+            const resultDiv = document.getElementById('resultDiv');
+            
+            if (!secretKey) {
+                resultDiv.innerHTML = '<div class="alert alert-error">❌ Por favor ingresa la clave secreta</div>';
+                return;
+            }
+            
+            sendBtn.disabled = true;
+            loadingDiv.style.display = 'block';
+            resultDiv.innerHTML = '';
+            
+            try {
+                const response = await fetch('/admin/send-reminders-manual', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ secretKey })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    resultDiv.innerHTML = '<div class="alert alert-success">✅ ' + result.message + '</div>';
+                } else {
+                    resultDiv.innerHTML = '<div class="alert alert-error">❌ ' + result.message + '</div>';
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="alert alert-error">❌ Error de conexión: ' + error.message + '</div>';
+            }
+            
+            sendBtn.disabled = false;
+            loadingDiv.style.display = 'none';
+        });
+        
+        // Prueba de email individual
+        document.getElementById('testEmailForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const testEmail = document.getElementById('testEmail').value;
+            const testSecretKey = document.getElementById('testSecretKey').value;
+            const testEmailBtn = document.getElementById('testEmailBtn');
+            const testEmailResult = document.getElementById('testEmailResult');
+            
+            testEmailBtn.disabled = true;
+            testEmailBtn.textContent = '📧 Enviando...';
+            testEmailResult.innerHTML = '';
+            
+            try {
+                const response = await fetch('/admin/test-reminder-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ testEmail, secretKey: testSecretKey })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    testEmailResult.innerHTML = '<div class="alert alert-success">✅ Email de prueba enviado a ' + testEmail + '</div>';
+                } else {
+                    testEmailResult.innerHTML = '<div class="alert alert-error">❌ ' + result.message + '</div>';
+                }
+                
+            } catch (error) {
+                testEmailResult.innerHTML = '<div class="alert alert-error">❌ Error: ' + error.message + '</div>';
+            }
+            
+            testEmailBtn.disabled = false;
+            testEmailBtn.textContent = '📧 Enviar Email de Prueba';
+        });
+        
+        // Cargar estadísticas al cargar la página
+        window.addEventListener('load', loadStats);
+    </script>

@@ -1,6 +1,6 @@
 <style>
     .admin-container {
-        max-width: 1200px;
+        max-width: 100%;
         margin: 0 auto;
         padding: 20px;
         font-family: Arial, sans-serif;
@@ -150,6 +150,16 @@
         display: flex;
         justify-content: end;
     }
+    
+    @media (max-width: 600px){
+        .container-btn{
+            justify-content: center;
+        }
+    }
+
+    .name-guest{
+        white-space: nowrap;
+    }
 </style>
 
 <div class="admin-container">
@@ -207,7 +217,7 @@
                 <tbody>
                     {{#each guests}}
                     <tr>
-                        <td><strong>{{this.name}}</strong></td>
+                        <td class="name-guest"><strong>{{this.name}}</strong></td>
                         <td>{{this.email}}</td>
                         <td>{{#if
                             this.phone}}{{this.phone}}{{else}}-{{/if}}</td>
@@ -220,7 +230,7 @@
                             -
                             {{/if}}
                         </td>
-                        <td>{{this.confirmationDate}}</td>
+                        <td>{{this.formattedConfirmationDate}}</td>
                         <td>
                             <button class="delete-btn"
                                 onclick="deleteGuest('{{this._id}}', '{{this.name}}')">
